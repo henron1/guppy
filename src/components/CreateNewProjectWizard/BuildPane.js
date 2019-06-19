@@ -191,13 +191,16 @@ class BuildPane extends PureComponent<Props, State> {
             if (isCompleted) {
               stepStatus = 'done';
               return (
-                <Sound
-                  url={soundfile}
-                  playStatus={Sound.status.PLAYING}
-                  onLoading={this.handleSongLoading}
-                  onPlaying={this.handleSongPlaying}
-                  onFinishedPlaying={this.handleSongFinishedPlaying}
-                />
+                // <div>
+                //   <audio
+                //     ref="audio_tag"
+                //     src="./Sounds/guppy_create_success.wav"
+                //     controls
+                //     autoPlay
+                //   />
+                // </div>
+
+                <Sound url={soundfile} playStatus={Sound.status.PLAYING} />
               );
             } else if (stepKey === currentBuildStep) {
               stepStatus = 'in-progress';
