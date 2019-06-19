@@ -15,6 +15,9 @@ import BuildStepProgress from './BuildStepProgress';
 import type { BuildStep, Status } from './types';
 import type { ProjectType, ProjectInternal } from '../../types';
 
+import Sound from 'react-sound';
+import soundfile from './Sounds/guppy_create_success.wav';
+
 const BUILD_STEPS = {
   installingCliTool: {
     copy: 'Installing build tool',
@@ -165,7 +168,7 @@ class BuildPane extends PureComponent<Props, State> {
           <FinishedInnerWrapper>
             <IconBase size={128} icon={check} />
             <Spacer size={20} />
-            Project Created!
+            Project Created!!!!
           </FinishedInnerWrapper>
         </Finished>
 
@@ -187,6 +190,15 @@ class BuildPane extends PureComponent<Props, State> {
 
             if (isCompleted) {
               stepStatus = 'done';
+              return (
+                <Sound
+                  url={soundfile}
+                  playStatus={Sound.status.PLAYING}
+                  onLoading={this.handleSongLoading}
+                  onPlaying={this.handleSongPlaying}
+                  onFinishedPlaying={this.handleSongFinishedPlaying}
+                />
+              );
             } else if (stepKey === currentBuildStep) {
               stepStatus = 'in-progress';
             } else if (
